@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	距离日期：<input type="date" value="2016-11-09" id="endDate">
+	倒计时为：<div id="countDown"></div>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		var countDown=document.getElementById('countDown');
+		function getCount(){
+			var now=new Date();
+			 var nowTime=now.getTime();//现在的时间戳
+			 var endDateObj=document.getElementById('endDate');
+		 	 var endDate=new Date(endDateObj.value);
+		 	 var endTime=endDate.getTime();
+		 	 if(endTime<nowTime){
+		 	 	 endTime=nowTime;
+		 	 }
+		 	 var time=endTime-nowTime;//将来的时间点 与现在的时间点 的时间差
+		 	 //转换为 日 时  分 秒 
+		 	var day=Math.floor(time/1000/60/60/24);
+		 	var h=Math.floor(time/1000/60/60%24);
+		 	var minute=Math.floor(time/1000/60%60);
+		 	var second=Math.floor(time/1000%60);
+		 	// console.log(second);
+		 	var count=day+'天 '+h+'小时 '+minute+'分钟 '+second+'秒';
+	 		countDown.innerHTML=count;
+		}
+		getCount();
+		setInterval(getCount,1000);
+		
+	 	
+	 	
+
+
+		  
+	</script>
+</body>
+</html>

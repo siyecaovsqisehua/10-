@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{margin:0;padding: 0;}
+		.outer{
+			width:800px;
+			height:240px;
+			overflow: hidden;
+			margin:20px auto;
+		}
+		ul{
+			width:1000px;
+			height:240px;
+			list-style: none;
+		}
+		ul li{
+			float:left;
+			width:200px;
+			height:240px;
+		}
+		ul li img{
+			width:100%;
+			height:100%;
+		}
+	</style>
+</head>
+<body>
+<div class="outer">
+	<ul id="ul">
+		<li><img src="images/play-box1.jpg"></li>
+		<li><img src="images/play-box2.jpg"></li>
+		<li><img src="images/play-box3.jpg"></li>
+		<li><img src="images/play-box4.jpg"></li>
+		<li><img src="images/play-box5.jpg"></li>
+	</ul>
+</div>
+<script src="jquery-1.8.3.min.js"></script>
+<script>
+	$(function(){
+		function roll(){
+			$('#ul').animate({marginLeft:'-200px'},2000,function(){
+				$('#ul').css({marginLeft:'0'});
+				$('#ul li:first').remove().clone(true).appendTo($('#ul'));
+			})
+		}
+		roll();
+		var startRoll=setInterval(roll,2000);
+		$('#ul').on('mouseover',function(){
+			$(this).css({cursor:'pointer'});
+			clearInterval(startRoll);
+		}).on('mouseout',function(){
+			startRoll=setInterval(roll,2000);
+		})
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{margin:0;padding: 0;}
+		#min{
+			width:384px;
+		}
+		#max{
+			width:300px;
+			height:300px;
+			overflow:hidden;
+			display: none;
+			position: absolute;
+		}
+
+	</style>
+</head>
+<body>
+	<img src="images/bingbing.jpg" id="min">
+	<div id="max">
+		<img src="images/bingbing.jpg">
+	</div>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script>
+		$(function(){
+			$('#min').mouseover(function(){
+				var p=$(this).offset();
+				var w=$(this).width();
+				$('#max').css({top:p.top,left:p.left+w+5}).show();
+			}).mouseout(function(){
+				$('#max').hide();
+			}).mousemove(function(e){
+				$('#max').scrollTop(e.offsetY*5-150).scrollLeft(e.offsetX*5-150);
+			})
+		})
+	</script>
+</body>
+</html>
